@@ -115,27 +115,9 @@
          The user is forbidden from setting the brightness below this level. -->
     <integer name="config_screenBrightnessSettingMinimum">1</integer>
 
-    <!-- Default LED on time for notification LED in milliseconds. -->
-    <integer name="config_defaultNotificationLedOn">500</integer>
-
-    <!-- Default LED off time for notification LED in milliseconds. -->
-    <integer name="config_defaultNotificationLedOff">2000</integer>
-
     <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->
     <bool name="config_intrusiveNotificationLed">true</bool>
  
-    <!-- Default value for led color when battery is low on charge -->
-    <integer name="config_notificationsBatteryLowARGB">0xFFFFFFFF</integer>
-
-    <!-- Default value for led color when battery is medium charged -->
-    <integer name="config_notificationsBatteryMediumARGB">0xFFFFFFFF</integer>
-
-    <!-- Default value for led color when battery is fully charged -->
-    <integer name="config_notificationsBatteryFullARGB">0xFFFFFFFF</integer>
-
-    <!-- Is the battery LED intrusive? Used to decide if there should be a disable option -->
-    <bool name="config_intrusiveBatteryLed">true</bool>
-
     <!-- When true use the linux /dev/input/event subsystem to detect the switch changes
          on the headphone/microphone jack. When false use the older uevent framework. -->
     <bool name="config_useDevInputEventForAudioJack">true</bool>
@@ -163,59 +145,49 @@
          config to 7. -->
     <integer name="config_deviceHardwareKeys">83</integer>
 
-    <!-- Hardware keys present on the device with the ability to wake, stored as a bit field.
-         This integer should equal the sum of the corresponding value for each
-         of the following keys present:
-             1 - Home
-             2 - Back
-             4 - Menu
-             8 - Assistant (search)
-            16 - App switch
-            32 - Camera
-            64 - Volume rocker
-         For example, a device with Home, Back and Menu keys would set this
-         config to 7. -->
-    <integer name="config_deviceHardwareWakeKeys">65</integer>
+    <!-- Control the behavior when the user long presses or double taps one of the below keys.
+          0 - Nothing
+          1 - Menu key
+          2 - Recent apps view in SystemUI
+          3 - Launch assist intent
+          4 - Voice search
+          5 - In-app search
+          6 - Launch camera
+          7 - Launch last app
+          8 - Split screen
+          9 - Screen off
+       This needs to match the constants in
+       services/core/java/com/android/server/policy/PhoneWindowManager.java -->
 
-    <!-- Control the behavior when the user long presses the home button.
-            0 - Nothing
-            1 - Menu key
-            2 - Recent apps view in SystemUI
-            3 - Launch assist intent
-            4 - Voice Search
-            5 - In-app Search
-         This needs to match the constants in
-         policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
-    -->
-    <integer name="config_longPressOnHomeBehavior">3</integer>
+    <!-- home -->
+    <integer name="config_longPressOnHomeKeyBehavior">3</integer>
+    <integer name="config_doubleTapOnHomeKeyBehavior">0</integer>
+    <!-- menu -->
+    <integer name="config_longPressOnMenuKeyBehavior">0</integer>
+    <integer name="config_doubleTapOnMenuKeyBehavior">0</integer>
+    <!-- back -->
+    <integer name="config_longPressOnBackKeyBehavior">9</integer>
+    <integer name="config_doubleTapOnBackKeyBehavior">0</integer>
+    <!-- assist -->
+    <integer name="config_longPressOnAssistKeyBehavior">0</integer>
+    <integer name="config_doubleTapOnAssistKeyBehavior">0</integer>
+    <!-- app switch -->
+    <integer name="config_longPressOnAppSwitchKeyBehavior">8</integer>
+    <integer name="config_doubleTapOnAppSwitchKeyBehavior">0</integer>
+    <!-- camera -->
+    <integer name="config_longPressOnCameraKeyBehavior">0</integer>
+    <integer name="config_doubleTapOnCameraKeyBehavior">0</integer>
 
-    <!-- Control the behavior when the user long presses the app switch button.
-            0 - Nothing
-            1 - Menu key
-            2 - Recent apps view in SystemUI
-            3 - Launch assist intent
-            4 - Voice Search
-            5 - In-app Search
-            6 - Launch camera
-            7 - Turn screen off
-            8 - Last app
-         This needs to match the constants in
-         services/core/java/com/android/server/policy/PhoneWindowManager.java
-    -->
-    <integer name="config_longPressOnAppSwitchBehavior">1</integer>
- 
-    <!-- Override the default detection behavior for the framework method
-         android.view.ViewConfiguration#hasPermanentMenuKey().
-         Valid settings are:
-         0 - No change. Use the default autodetection behavior.
-         1 - The device DOES have a permanent menu key; ignore autodetection.
-         2 - The device DOES NOT have a permanent menu key; ignore autodetection. -->
-    <integer name="config_overrideHasPermanentMenuKey">2</integer>
-    
-    <!-- Whether a software navigation bar should be shown. NOTE: in the future this may be
-         autodetected from the Configuration. -->
-    <bool name="config_showNavigationBar">false</bool>
- 
+    <!-- Default value for proximity check on screen wake
+     NOTE ! - Enable for devices that have a fast response proximity sensor (ideally < 300ms)-->
+    <bool name="config_proximityCheckOnWake">true</bool>
+    <integer name="config_proximityCheckTimeout">200</integer>
+    <bool name="config_proximityCheckOnWakeEnabledByDefault">true</bool>
+
+    <!-- If enabled, capacitive keys will only light up when pressed.
+         Otherwise, the buttons will light up whenever the user interacts with the device -->
+    <bool name="config_buttonLightOnKeypressOnly">true</bool>
+
     <!-- Wifi driver supports batched scan -->
     <bool translatable="false" name="config_wifi_batched_scan_supported">true</bool>
 
@@ -455,19 +427,5 @@
 
     <!-- Flag specifying whether WFC over IMS is available on device -->
     <bool name="config_device_wfc_ims_available">true</bool>
-
-    <!-- Support in Surfaceflinger for blur layers.
-         NOTE: This requires additional hardware-specific code. -->
-    <bool name="config_uiBlurEnabled">true</bool>
-
-    <!-- Whether notify fingerprint client of successful cancelled authentication -->
-    <bool name="config_notifyClientOnFingerprintCancelSuccess">true</bool>
-
-    <!-- If enabled, capacitive keys will only light up when pressed.
-         Otherwise, the buttons will light up whenever the user interacts with the device -->
-    <bool name="config_buttonLightOnKeypressOnly">true</bool>
-
-    <!-- Whether device supports double tap to wake -->
-    <bool name="config_supportDoubleTapWake">false</bool>
 
 </resources>
